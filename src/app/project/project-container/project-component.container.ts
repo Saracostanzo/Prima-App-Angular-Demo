@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from '@app/models/Project';
+import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -8,20 +8,28 @@ import { ProjectService } from '../project.service';
   templateUrl: './project-container.component.html',
   styleUrls: ['./project-container.component.css']
 })
-export class ProjectContainerComponent implements OnInit {
-  selectedProject!:Project;
+export class ProjectContainerComponent implements OnInit, OnDestroy{
+selectedProject!:Project;
+subscription!:Subscription;
 
-projects:Project[] = [];
+
+projects$!:Observable<Project[]>;
 
   constructor(private projectService :ProjectService) { }
-
   ngOnInit(): void {
-    this.projects=this.projectService.getAll();
+   this.projects$ = this.projectService.getAll();
   }
    selectProject(project:Project){
-    this.selectedProject = this.projectService.get(project.id);
+    this.subscription = this.projectService.get(project.id).subscribe(data=>{
+      this.selectedProject = data;
+    });
   }
   submitProjectForm(project:Project){
-  this.projectService.add(project);
+  this.projectService.add(project).subscribe(data=>
+    this.projects$=this.projectService.getAll())
   }
+ngOnDestroy(){
+    this.subscription.unsubscribe();
+}
+
 }
