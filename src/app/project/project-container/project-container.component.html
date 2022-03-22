@@ -5,7 +5,9 @@
 
 <ng-container *ngIf="projects$ | async as projects">
   <ngprj-project-list [projects]="projects" (selected)="selectProject($event)"></ngprj-project-list>
+
 </ng-container>
+
 <ngprj-project-detail [project]="selectedProject"></ngprj-project-detail>
 <ngprj-project-form (submitted)="submitProjectForm($event)"></ngprj-project-form>
 

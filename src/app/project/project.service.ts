@@ -33,10 +33,10 @@ export class ProjectService {
   }
 
 
-  get(id:Number):Observable <Project>{
-    return this.HttpClient.get<Project>(`http://localhost:3000/projects , ${id}`).pipe(
+  get(id:number):Observable <Project>{
+    return this.HttpClient.get<Project>(`http://localhost:3000/projects/${id}`).pipe(
       tap((data)=>this.logService.log(`Get Eseguito, ${data}`))
-    )
+    );
     }
 
   }
