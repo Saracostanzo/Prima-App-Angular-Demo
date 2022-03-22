@@ -1,4 +1,10 @@
-<div class="container-fluid py-5" *ngIf="project">
+<ngprj-section-header
+[title]="'Dettagli Progetto'"
+[button] = " { label:'Torna ai Progetti', link:'/projects'}">
+</ngprj-section-header>
+
+<ng-container *ngIf="project$ |async as project">
+<div class="container-fluid py-5">
   <div class="card">
     <div class="card-body">
       <h1 class="display-5 fw-bold">{{project.name}}</h1>
@@ -6,3 +12,4 @@
     </div>
   </div>
 </div>
+</ng-container>
