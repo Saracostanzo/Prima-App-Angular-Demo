@@ -1,19 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SectionHeaderComponent } from "../section-header/section-header.component";
+import { CardComponent } from "./components/card/card.component";
+import { SectionHeaderComponent } from "./section-header/section-header.component";
 
 
 @NgModule({
   declarations:[
-    SectionHeaderComponent
+    SectionHeaderComponent,
+     CardComponent
   ],
   imports:[
 CommonModule,
 RouterModule
   ],
   exports:[
-    SectionHeaderComponent
+    SectionHeaderComponent,
+    CardComponent
   ]
 })
 export class SharedModule {}

@@ -4,12 +4,13 @@
 </ngprj-section-header>
 
 <ng-container *ngIf="project$ |async as project">
-<div class="container-fluid py-5">
-  <div class="card">
-    <div class="card-body">
+  <ngprj-card>
+    <ng-container data-body>
       <h1 class="display-5 fw-bold">{{project.name}}</h1>
+      <h2>{{project.start | date}}</h2>
+    </ng-container>
+    <ng-container data-footer>
       <p class="col-md-8 fs-4"> {{project.description}}</p>
-    </div>
-  </div>
-</div>
+    </ng-container>
+  </ngprj-card>
 </ng-container>
