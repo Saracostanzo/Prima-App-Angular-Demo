@@ -1,9 +1,9 @@
-import { Component, Input , OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Project } from '@app/models/Project';
-import { ProjectService } from '@app/services/project.service';
-import { Observable, switchMap } from 'rxjs';
-
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'ngprj-project-detail',
@@ -11,15 +11,18 @@ import { Observable, switchMap } from 'rxjs';
   styleUrls: ['./project-detail.component.css']
 })
 export class ProjectDetailComponent implements OnInit {
-  project$!:Observable<Project>;
+  project$!: Observable<Project>;
 
-  constructor(private activatedRoute:ActivatedRoute, private projectService: ProjectService) {}
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
-  ngOnInit(): void {
-    this.project$= this.activatedRoute.paramMap.pipe(
-      switchMap((params:ParamMap)=>this.projectService.get(+params.get("id")!))
-    )
-
+  ngOnInit() {
+    this.project$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.projectService.get(+params.get('id')!))
+    );
   }
 
+  submit(project: Project) {
+    console.log(project);
+    // this.projectService.update(project)
+  }
 }

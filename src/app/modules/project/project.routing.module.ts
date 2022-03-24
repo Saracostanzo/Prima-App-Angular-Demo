@@ -5,13 +5,17 @@ import { ProjectDashboardComponent } from './pages/project-dashboard/project-das
 import { ProjectDetailComponent } from './pages/project-detail/project-detail.component';
 import { ProjectComponent } from './pages/project.component';
 
+
 const routes: Routes = [
   {
     path: '',
-    component : ProjectComponent,
+    component: ProjectComponent,
     children: [
       { path: '', component: ProjectDashboardComponent },
-      { path:'detail/:id', component: ProjectDetailComponent}
+      {
+        path: 'detail/:id',
+        component: ProjectDetailComponent,
+      }
     ]
   }
 ];

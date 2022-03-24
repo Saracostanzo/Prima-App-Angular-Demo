@@ -1,13 +1,21 @@
-<ngprj-section-header
-[title]="'I miei Progetti'"
-[button] = " { label:'Vai alla Dashboard', link:'/home'}">
-</ngprj-section-header>
+<ngprj-section-header [title]="'I miei progetti'" [button]="{ label: 'Torna ad Home', link: '/', type: 'btn-link' }"></ngprj-section-header>
 
-<ng-container *ngIf="projects$ | async as projects">
-  <ngprj-project-list [projects]="projects" (selected)="selectProject($event)"></ngprj-project-list>
-
+<ng-container *ngIf="(projects$ | async) as projects; else loading">
+  <ngprj-project-list
+      *ngIf="projects.length > 0 ; else noProjects"
+      [projects]="projects"
+      (selectedProject)="selectProject($event)">
+  </ngprj-project-list>
+  <hr />
 </ng-container>
 
-<ngprj-project-form (submitted)="submitProjectForm($event)"></ngprj-project-form>
+<hr>
+<ngprj-project-form (submittedProject)="addNewProject($event)"></ngprj-project-form>
 
+<ng-template #noProjects>
+  <p>Non è presente nessun progetto</p>
+</ng-template>
 
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

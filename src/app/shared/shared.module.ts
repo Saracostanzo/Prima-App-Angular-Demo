@@ -1,22 +1,23 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { CardComponent } from "./components/card/card.component";
-import { SectionHeaderComponent } from "./section-header/section-header.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import { FormsModule } from '@angular/forms';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
-  declarations:[
+  declarations: [
     SectionHeaderComponent,
-     CardComponent
+    CardComponent
   ],
-  imports:[
-CommonModule,
-RouterModule
+  imports: [
+    CommonModule,
+    RouterModule
   ],
-  exports:[
+  exports: [
     SectionHeaderComponent,
     CardComponent
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

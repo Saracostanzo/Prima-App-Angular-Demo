@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Project } from '@app/models/Project';
 
@@ -8,13 +8,18 @@ import { Project } from '@app/models/Project';
   styleUrls: ['./project-form.component.css']
 })
 export class ProjectFormComponent implements OnInit {
-@Output()submitted= new EventEmitter <Project>();
+  @Output() submittedProject = new EventEmitter<Project>();
+
   constructor() { }
-    submit(f:NgForm){
-      this.submitted.emit({...f.value});
-  }
 
   ngOnInit(): void {
   }
+
+  submit(form: NgForm) {
+    this.submittedProject.emit({
+        ...form.value
+    });
+  }
+
 
 }

@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing.module';
+import { HomeComponent } from './modules/dashboard/pages/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { AuthInteceptor } from './core/auth.interceptor';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectModule } from './modules/project/project.module';
+import { DashboardModule } from './modules/dashboard/pages/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    AppRoutingModule,
   ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS , useClass: AuthInteceptor , multi:true}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

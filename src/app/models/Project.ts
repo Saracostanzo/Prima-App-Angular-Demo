@@ -1,14 +1,15 @@
-import{Task} from "./Task";
-export type Priority= "low"|"medium"|"hight";
+import Task from './Task';
+
+type priority = 'low' | 'medium' | 'high';
 
 export interface Project {
-    id:number;
+    id: number;
     code: string;
     name: string;
     description?: string;
     start: Date;
-    end?:Date;
+    end?: Date;
+    priority: priority,
     done: boolean;
-    priority: Priority;
-    tasks: Task[];
+    tasks: Task[]
 }

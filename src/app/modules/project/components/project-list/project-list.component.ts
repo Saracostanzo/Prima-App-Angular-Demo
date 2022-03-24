@@ -7,15 +7,15 @@ import { Project } from '@app/models/Project';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-@Input() projects:Project[]=[];
-@Output() selected= new EventEmitter<Project>();
+  @Input() projects: Project[] = [];
+  @Output() selectedProject = new EventEmitter<Project>();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  select(project:Project){
-    this.selected.emit(project);
+  ngOnInit() {
   }
 
+  select(project: Project) {
+    this.selectedProject.emit(project);
+  }
 }

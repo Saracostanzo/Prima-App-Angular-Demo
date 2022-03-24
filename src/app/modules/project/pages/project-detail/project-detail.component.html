@@ -1,16 +1,25 @@
-<ngprj-section-header
-[title]="'Dettagli Progetto'"
-[button] = " { label:'Torna ai Progetti', link:'/projects'}">
-</ngprj-section-header>
+<ngprj-section-header [title]="'Progetto'" [button]="{ label: 'Torna a Progetti', link: '/projects', type: 'btn-link' }"></ngprj-section-header>
 
-<ng-container *ngIf="project$ |async as project">
-  <ngprj-card>
-    <ng-container data-body>
-      <h1 class="display-5 fw-bold">{{project.name}}</h1>
-      <h2>{{project.start | date}}</h2>
-    </ng-container>
-    <ng-container data-footer>
-      <p class="col-md-8 fs-4"> {{project.description}}</p>
-    </ng-container>
-  </ngprj-card>
+<ng-container *ngIf="project$ | async as project; else loading">
+  <div class="container-fluid py-5">
+    <ngprj-card>
+      <ng-container data-body>
+        <h1 class="display-5 fw-bold">{{project.name}}</h1>
+        <p class="col-md-8 fs-4">{{project.description}}</p>
+      </ng-container>
+      <ng-container data-footer>
+        <p>
+          <span>Codice: {{project.code}} - Data Inizio: {{project.start | date:'dd/MM/yyyy'}}</span>
+          <span *ngIf="project.end">- Data Fine: {{project.end | date:'dd/MM/yyyy'}}</span>
+        </p>
+      </ng-container>
+    </ngprj-card>
+  </div>
+  <hr>
+  <ngprj-project-form-rf [project]="project" (submitted)="submit($event)"></ngprj-project-form-rf>
 </ng-container>
+
+
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

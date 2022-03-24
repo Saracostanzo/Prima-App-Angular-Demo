@@ -1,16 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ngprj-project',
-  template: `
-   <router-outlet></router-outlet>
-  `
+  templateUrl: './project.component.html',
+  styles: []
 })
-export class ProjectComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ProjectComponent {}
